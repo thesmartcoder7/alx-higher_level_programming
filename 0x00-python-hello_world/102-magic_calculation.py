@@ -8,12 +8,4 @@
 # - Give the final answer back to whoever asked for it.
 
 def magic_calculation(a, b):
-    """
-        This function loads the constant 98 onto the stack,
-        loads the values of a and b onto the stack using the
-        LOAD_FAST instruction, raises a to the power of b using
-        the BINARY_POWER instruction, adds 98 to the result using
-        the BINARY_ADD instruction, and returns the result using
-        the RETURN_VALUE instruction.
-    """
     return 98 + (a ** b)
