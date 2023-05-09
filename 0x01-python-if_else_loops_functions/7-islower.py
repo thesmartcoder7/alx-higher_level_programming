@@ -4,5 +4,5 @@ def islower(c):
     try:
         if abs(int(c)):
             return False
-    except:
+    except TypeError:
         return True if c == c.lower() else False

@@ -2,4 +2,3 @@
 
 for integer in range(99):
     print(f"{integer} = {hex(integer)}")
-    

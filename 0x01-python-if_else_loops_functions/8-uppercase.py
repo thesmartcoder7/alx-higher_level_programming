@@ -6,10 +6,10 @@ def uppercase(str):
         try:
             if isinstance(int(char), int):
                 temp.append(char)
-        except:
+        except TypeError:
             if char == char.lower() and char != " ":
                 temp.append(chr(ord(char) - 32))
             else:
                 temp.append(char)
-    
-    print (''.join(temp))
+
+    print(''.join(temp))

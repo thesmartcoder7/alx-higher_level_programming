@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-for integer in range(99):
-    print(f"0{integer}, " if len(str(integer)) == 1 else f"{integer}, ", end='')
+for i in range(99):
+    print(f"0{i}, " if len(str(i)) == 1 else f"{i}, ", end='')
 
 print(str(99))
