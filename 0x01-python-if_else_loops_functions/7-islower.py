@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 
 def islower(c):
-    try:
-        if abs(int(c)):
-            return False
-    except ValueError:
-        return True if c == c.lower() else False
+    if ord(c) >= 97 and ord(c) <= 122:
+        return True
+    else:
+        return False
