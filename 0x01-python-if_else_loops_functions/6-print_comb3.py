@@ -6,4 +6,4 @@ for one in range(10):
             if f"{one}{two}" != str(89):
                 print("{}{}, ".format(one, two), end='')
             else:
-                print("{}{}, ".format(one, two))
+                print("{}{}".format(one, two))
