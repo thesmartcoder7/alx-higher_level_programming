@@ -2,7 +2,7 @@
 
 def print_last_digit(number):
     if isinstance(number, str):
-        return
+        return ""
     elif len(str(number)) > 1:
         print(str(number)[-1], end='')
         return str(number)[-1]
