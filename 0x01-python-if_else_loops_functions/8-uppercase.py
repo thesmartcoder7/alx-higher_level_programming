@@ -4,7 +4,7 @@ def uppercase(str):
     temp = []
     for char in str:
         try:
-            if isinstance(int(char), int):
+            if not isinstance(char, str):
                 temp.append(char)
         except ValueError:
             if char == char.lower() and char != " ":
