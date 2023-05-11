@@ -15,7 +15,6 @@ if __name__ == "__main__":
         print("Usage: ./100-my_calculator.py <a> <operator> <b>")
         exit(1)
     else:
-        print(args[1])
         if args[1] not in ops:
             print("Unknown operator. Available operators: +, -, * and /")
             exit(1)
