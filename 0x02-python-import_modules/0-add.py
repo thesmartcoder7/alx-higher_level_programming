@@ -1,6 +1,6 @@
 #!/usr/bin/python3
+from add-0 import add
 
-add = __import__('add-0').add
 a = 1
 b = 2
 

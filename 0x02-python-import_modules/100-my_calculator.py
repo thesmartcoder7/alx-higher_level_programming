@@ -1,14 +1,14 @@
 #!/usr/bin/python3
 # sys module gives access to the arguments
 import sys
-cal = __import__("calculator_1")
+from calculator_1 import add, sub, mul, div
 
 # sys.argv gives an array or agruments including
 # the name of the script. [1:] removes the name
 # of the script from the list
 
 args = sys.argv[1:]
-ops = {'+': cal.add, '-': cal.sub, '*': cal.mul, '/': cal.div}
+ops = {'+': add, '-': sub, '*': mul, '/': div}
 
 if __name__ == "__main__":
     if len(args) != 3:
