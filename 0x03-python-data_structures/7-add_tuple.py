@@ -2,8 +2,13 @@
 
 
 def add_tuple(tuple_a=(), tuple_b=()):
+    """
+        This function adds two tuples and returns
+        a tuple of length 2
+    """
     while len(tuple_a) < 2:
         tuple_a += (0,)
+
     while len(tuple_b) < 2:
         tuple_b += (0,)
 
