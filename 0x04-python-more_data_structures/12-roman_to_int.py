@@ -18,8 +18,13 @@ def roman_to_int(roman):
     """
     number = 0
     if isinstance(roman, str) or roman is not None:
-        for c in roman:
-            number += ri_dict[c.upper()]
+        for i in range(len(roman)):
+            if (i != (len(roman) - 1) and
+                    ri_dict[roman[i]] < ri_dict[roman[i + 1]]):
+                number += ri_dict[roman[i]] * -1
+
+            else:
+                number += ri_dict[roman[i]]
         return number
     else:
         return 0
