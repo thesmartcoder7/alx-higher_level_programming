@@ -20,6 +20,6 @@ def roman_to_int(roman):
     if isinstance(roman, str) or roman is not None:
         for c in roman:
             number += ri_dict[c.upper()]
+        return number
     else:
         return 0
-    return int(number)
