@@ -17,9 +17,9 @@ def roman_to_int(roman):
         This function converts roman numerals to integers
     """
     number = 0
-    if isinstance(roman, str):
+    if isinstance(roman, str) or roman is not None:
         for c in roman:
             number += ri_dict[c.upper()]
     else:
         return 0
-    return number
+    return int(number)
