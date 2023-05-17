@@ -19,6 +19,8 @@ def roman_to_int(roman):
     number = 0
     if isinstance(roman, str) or roman is not None:
         for i in range(len(roman)):
+            if ri_dict[roman[i]] == 0:
+                return 0
             if (i != (len(roman) - 1) and
                     ri_dict[roman[i]] < ri_dict[roman[i + 1]]):
                 number += ri_dict[roman[i]] * -1
@@ -27,4 +29,4 @@ def roman_to_int(roman):
                 number += ri_dict[roman[i]]
         return number
     else:
-        return 0
+        return number
