@@ -1,13 +1,13 @@
 #!/usr/bin/python3
 
 
-def complex_delete(a_dict, val):
-    if not val or val is None:
-        return a_dict
+def complex_delete(a_dict, value):
+    keys = []
+    for x, y in a_dict.items():
+        if y == value:
+            keys.append(x)
 
-    for key, value in dict(a_dict).items():
-        if value == val:
-            del a_dict[key]
-            break
+    for x in keys:
+        del a_dict[x]
 
     return a_dict
