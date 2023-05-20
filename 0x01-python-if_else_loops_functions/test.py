@@ -76,5 +76,23 @@ class TestAdd(unittest.TestCase):
         self.assertEqual(result, expected)
 
 
+# pow test
+class TestPow(unittest.TestCase):
+    def test_pow(self):
+        pow = __import__('11-pow').pow
+
+        result = [
+            pow(2, 2),
+            pow(98, 2),
+            pow(98, 0),
+            pow(100, -2),
+            pow(-4, 5),
+        ]
+
+        expected = [4, 9604, 1, 0.0001, -1024]
+
+        self.assertEqual(result, expected)
+
+
 if __name__ == "__main__":
     unittest.main()
