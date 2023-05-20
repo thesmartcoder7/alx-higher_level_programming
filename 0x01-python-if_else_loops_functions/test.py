@@ -44,5 +44,21 @@ class TestUppercase(unittest.TestCase):
         self.assertEqual(sample, expected)
 
 
+# print last digit test
+class TestPrintLastDigit(unittest.TestCase):
+    def test_print_last_digit(self):
+        print_last_digit = __import__('9-print_last_digit').print_last_digit
+
+        digits = [
+            print_last_digit(98),
+            print_last_digit(0),
+            print_last_digit(-1024),
+        ]
+
+        expected = [8, 0, 4]
+
+        self.assertEqual(digits, expected)
+
+
 if __name__ == "__main__":
     unittest.main()
