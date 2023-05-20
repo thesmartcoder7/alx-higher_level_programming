@@ -2,11 +2,11 @@
 
 import unittest
 
-islower = __import__('7-islower').islower
 
-
+# islower function test
 class TestIsLower(unittest.TestCase):
     def test_islower(self):
+        islower = __import__('7-islower').islower
         array = [
             "a is {}".format("lower" if islower("a") else "upper"),
             "H is {}".format("lower" if islower("H") else "upper"),
@@ -24,6 +24,24 @@ class TestIsLower(unittest.TestCase):
         ]
 
         self.assertEqual(array, expected)
+
+
+# to uppercase test
+class TestUppercase(unittest.TestCase):
+    def test_uppercase(self):
+        uppercase = __import__('8-uppercase').uppercase
+
+        sample = [
+            uppercase("best"),
+            uppercase("Best School 98 Battery street")
+        ]
+
+        expected = [
+            "BEST",
+            "BEST SCHOOL 98 BATTERY STREET"
+        ]
+
+        self.assertEqual(sample, expected)
 
 
 if __name__ == "__main__":
