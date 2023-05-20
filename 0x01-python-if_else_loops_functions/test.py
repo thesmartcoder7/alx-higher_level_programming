@@ -60,5 +60,21 @@ class TestPrintLastDigit(unittest.TestCase):
         self.assertEqual(digits, expected)
 
 
+# add test
+class TestAdd(unittest.TestCase):
+    def test_add(self):
+        add = __import__('10-add').add
+
+        result = [
+            add(1, 2),
+            add(98, 0),
+            add(100, -2),
+        ]
+
+        expected = [3, 98, 98]
+
+        self.assertEqual(result, expected)
+
+
 if __name__ == "__main__":
     unittest.main()
