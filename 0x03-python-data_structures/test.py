@@ -74,6 +74,18 @@ class TestRemoveChar(unittest.TestCase):
 
         
 
+# add tuple
+class TestAddTuple(unittest.TestCase):
+    def test_add_tuple(self):
+        add_tuple = __import__('7-add_tuple').add_tuple
+
+        tuple_a = (1, 89)
+        tuple_b = (88, 11)
+        new_tuple = add_tuple(tuple_a, tuple_b)
+
+        self.assertIsInstance(new_tuple, tuple)
+        self.assertEqual(new_tuple, (89,100))
+
 
 
 if __name__ == "__main__":
