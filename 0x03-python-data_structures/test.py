@@ -39,6 +39,21 @@ class TestReplaceInList(unittest.TestCase):
         expected_list = [1, 2, 3, 9, 5]
 
         self.assertEqual(new_list, expected_list)
+
+
+
+# new in list test
+class TestNewInList(unittest.TestCase):
+    def test_new_in_list(self):
+        new_in_list = __import__('4-new_in_list').new_in_list
+
+        my_list = [1, 2, 3, 4, 5]
+        idx = 3
+        new_element = 9
+        new_list = new_in_list(my_list, idx, new_element)
+
+        self.assertIsInstance(new_list, list)
+        self.assertListEqual(new_list, [1, 2, 3, 9, 5])
         
 
 
