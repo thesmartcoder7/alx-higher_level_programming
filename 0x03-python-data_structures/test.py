@@ -88,5 +88,19 @@ class TestAddTuple(unittest.TestCase):
 
 
 
+# multiple returns
+class TestMultipleReturn(unittest.TestCase):
+    def test_multiple_returns(self):
+        multiple_returns = __import__('8-multiple_returns').multiple_returns
+
+        sentence = "At school, I learnt C!"
+        length, first = multiple_returns(sentence)
+
+        self.assertIsInstance(length, int)
+        self.assertIsInstance(first, str)
+        self.assertEqual((length, first), (22, "A"))
+
+
+
 if __name__ == "__main__":
     unittest.main()
