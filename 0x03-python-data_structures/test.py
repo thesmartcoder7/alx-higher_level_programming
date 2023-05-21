@@ -115,6 +115,23 @@ class TestMaxInteger(unittest.TestCase):
 
 
 
+# delete at index 
+class TestDeleteAtIndex(unittest.TestCase):
+    def test_delete_at_index(self):
+        delete_at = __import__('11-delete_at').delete_at
+
+        my_list = [1, 2, 3, 4, 5]
+        idx = 3
+        new_list = delete_at(my_list, idx)
+        expected = [1, 2, 3, 5]
+
+        self.assertIsInstance(new_list, list)
+        self.assertEqual(new_list, expected)
+
+
+
+
+
 
 if __name__ == "__main__":
     unittest.main()
