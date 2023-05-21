@@ -54,6 +54,24 @@ class TestNewInList(unittest.TestCase):
 
         self.assertIsInstance(new_list, list)
         self.assertListEqual(new_list, [1, 2, 3, 9, 5])
+
+
+
+# remove character from list
+class TestRemoveChar(unittest.TestCase):
+    def test_remove_char(self):
+        no_c = __import__('5-no_c').no_c
+
+        result = [no_c("Best School"), no_c("Chicago"), no_c("C is fun!")]
+        expected = [
+            "Best Shool",
+            "hiago",
+            " is fun!"
+        ]
+
+        self.assertIsInstance(expected, list)
+        self.assertEqual(result, expected)
+
         
 
 
