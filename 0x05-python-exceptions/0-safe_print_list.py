@@ -1,38 +1,20 @@
 #!usr/bin/python3
 
 
-def get_length(arr):
-    """
-        Get the length of any list
-    """
-    length = 0
-    try:
-        for item in arr:
-            length += 1
-        return length
-    except TypeError as error:
-        print(error)
-        raise
-
-
 def safe_print_list(arr, items):
     """
         Print certain elements of a list
     """
-    length = get_length(arr)
+    j = 0
+
     try:
-        printed = 0
-        if items > length:
-            for i in range(length):
-                print('{}'.format(arr[i]), end='')
-                printed += 1
-            print()
-        else:
-            for i in range(items):
-                print('{}'.format(arr[i]), end='')
-                printed += 1
-            print()
-        return printed
-    except IndexError as error:
-        print(error)
-        raise
+        for i in arr:
+            if j < items:
+                print('{}'.format(arr[j]), end='')
+                j += 1
+
+        print()
+    except TypeError:
+        pass
+    finally:
+        return j
