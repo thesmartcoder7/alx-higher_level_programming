@@ -24,12 +24,12 @@ def safe_print_list(arr, items):
         printed = 0
         if items > length:
             for i in range(length):
-                print(arr[i], end='')
+                print('{}'.format(arr[i]), end='')
                 printed += 1
             print()
         else:
             for i in range(items):
-                print(arr[i], end='')
+                print('{}'.format(arr[i]), end='')
                 printed += 1
             print()
         return printed
