@@ -2,6 +2,9 @@
 
 
 def safe_print_division(a, b):
+    """
+        Print safe division
+    """
     res = 0
 
     try:

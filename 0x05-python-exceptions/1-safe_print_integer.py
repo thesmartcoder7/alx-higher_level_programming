@@ -2,6 +2,9 @@
 
 
 def safe_print_integer(value):
+    """
+        Print integer
+    """
     try:
         print('{:d}'.format(value))
         return True
