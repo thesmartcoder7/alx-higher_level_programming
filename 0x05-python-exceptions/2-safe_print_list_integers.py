@@ -1,18 +1,17 @@
 #!/usr/bin/python3
 
 
-def safe_print_list_integers(arr, items):
-    """
-        Print certain elements of a list
-    """
-    try:
-        printed = 0
-        for i in range(items):
-            if isinstance(arr[i], int):
-                print('{}'.format(arr[i]), end='')
+def safe_print_list_integers(my_list, x):
+    printed = 0
+
+    for i in range(x):
+        try:
+            if type(my_list[i]) is int and printed != x:
+                print('{:d}'.format(my_list[i]), end='')
                 printed += 1
-        print()
-        return printed
-    except IndexError as error:
-        print(error)
-        raise
+        except TypeError:
+            continue
+
+    print()
+
+    return printed
