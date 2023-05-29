@@ -5,11 +5,11 @@ def get_length(arr):
     """
         Get the length of any list
     """
-    len = 0
+    length = 0
     try:
         for item in arr:
-            len += 1
-        return len
+            length += 1
+        return length
     except TypeError as error:
         print(error)
         raise
@@ -19,11 +19,11 @@ def safe_print_list(arr, items):
     """
         Print certain elements of a list
     """
-    len = get_length(arr)
+    length = get_length(arr)
     try:
         printed = 0
-        if items > len:
-            for i in range(len):
+        if items > length:
+            for i in range(length):
                 print(arr[i], end='')
                 printed += 1
             print()
