@@ -7,4 +7,5 @@ class Square:
     """This class defines an empty square"""
 
     def __init__(self, size):
+        """class initializer method with data"""
         self._size = size
