@@ -1,20 +1,6 @@
 #!/usr/bin/python3
 
-"""
-    This is a square blue print.
-
-    Private instance attributes:
-        - size
-        - property
-
-    public instance methods:
-        - property def size(self)
-        - property setter def size(self, value)
-        - property def position(self)
-        - property setter def position(self, value)
-        - def area(self)
-        - def my_print(self)
-"""
+"""This is a square blue print."""
 
 
 class Square:
@@ -22,17 +8,17 @@ class Square:
 
     def __init__(self, size=0, position=(0, 0)):
         """class initializer method with data"""
-        self.__size = size
-        self.__position = position
+        self.size = size
+        self.position = position
 
     @property
     def size(self):
-        """Retrieve the size of the square"""
+        """this Retrieves the size."""
         return self.__size
 
     @size.setter
     def size(self, value):
-        """Sets the value of the size property"""
+        """this Sets the size to a value."""
         if not isinstance(value, int):
             raise TypeError("size must be an integer")
         elif value < 0:
@@ -56,13 +42,13 @@ class Square:
         self.__position = value
 
     def area(self):
-        """Return the size area of the square"""
-        return self.__size**2
+        """Returns the current square area."""
+        return self.__size ** 2
 
     def my_print(self):
         """
-            Prints to stdout the square with the character '#',
-            with respect to position
+            Prints to stdout the square with the character #,
+            at the position given by the position attribute.
         """
         if self.__size == 0:
             print()
