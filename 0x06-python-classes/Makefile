@@ -6,4 +6,7 @@ betty:
 
 tests:
 	./test.py
+
+clear cache:
+	git rm -r --cached . && git add . && git commit -m "chore: clear git cache" && git push
 	
