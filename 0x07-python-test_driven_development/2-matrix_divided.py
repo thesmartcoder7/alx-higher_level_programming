@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
     This module is in charge of dividing all the values of a matrix
-    according to a divisor given by the user. 
+    according to a divisor given by the user.
 """
 
 
