@@ -1,0 +1,64 @@
+===============================
+4. Print square module
+===============================
+
+Import module:
+==============
+    >>> print_square = __import__('4-print_square').print_square
+
+
+---------- Non-Parameters
+=========================
+
+    >>> print_square()
+    Traceback (most recent call last):
+    TypeError: print_square() missing 1 required positional argument: 'size'
+
+
+------------ right Parameters
+=============================
+
+    >>> print_square(0)
+
+    >>> print_square(4)
+    ####
+    ####
+    ####
+    ####
+
+    >>> print_square(15)
+    ###############
+    ###############
+    ###############
+    ###############
+    ###############
+    ###############
+    ###############
+    ###############
+    ###############
+    ###############
+    ###############
+    ###############
+    ###############
+    ###############
+    ###############
+
+
+-------- wrong Parameters
+=========================
+
+    >>> print_square(1e400)
+    Traceback (most recent call last):
+    TypeError: size must be an integer
+
+    >>> print_square(-1e400)
+    Traceback (most recent call last):
+    TypeError: size must be an integer
+
+    >>> print_square('Samuel Martins')
+    Traceback (most recent call last):
+    TypeError: size must be an integer
+
+    >>> print_square(-5)
+    Traceback (most recent call last):
+    ValueError: size must be >= 0

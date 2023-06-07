@@ -1,0 +1,85 @@
+===============================
+4. Text indentation module
+===============================
+
+Import module:
+==============
+    >>> text_indentation = __import__('5-text_indentation').text_indentation
+
+
+---------- Non-Parameters
+=========================
+
+    >>> text_indentation()
+    Traceback (most recent call last):
+    TypeError: text_indentation() missing 1 required positional argument: 'text'
+
+
+------------ right Parameters
+=============================
+
+    >>> text_indentation('Samuel')
+    Samuel
+
+    >>> text_indentation('Sam')
+    Sam
+    <BLANKLINE>
+
+    >>> text_indentation("Hello world. hehehe? interesting:")
+    Hello world.
+    <BLANKLINE>
+    hehehe?
+    <BLANKLINE>
+    interesting:
+    <BLANKLINE>
+
+    >>> text_indentation("""Bye world. \
+    ... Python Monty? \
+    ... Isn't""")
+    Bye world.
+    <BLANKLINE>
+    Python Monty?
+    <BLANKLINE>
+    Isn't
+
+    >>> text_indentation("   ?:.   ")
+    ?
+    <BLANKLINE>
+    :
+    <BLANKLINE>
+    .
+    <BLANKLINE>
+
+    >>> text_indentation("  .??:?.  ")
+    .
+    <BLANKLINE>
+    ?
+    <BLANKLINE>
+    ?
+    <BLANKLINE>
+    :
+    <BLANKLINE>
+    ?
+    <BLANKLINE>
+    .
+    <BLANKLINE>
+
+
+-------------- wrong Parameters
+===============================
+
+    >>> text_indentation(10)
+    Traceback (most recent call last):
+    TypeError: text must be a string
+
+    >>> text_indentation(False)
+    Traceback (most recent call last):
+    TypeError: text must be a string
+
+    >>> text_indentation(name)
+    Traceback (most recent call last):
+    TypeError: text must be a string
+
+    >>> text_indentation(1e400)
+    Traceback (most recent call last):
+    TypeError: text must be a string

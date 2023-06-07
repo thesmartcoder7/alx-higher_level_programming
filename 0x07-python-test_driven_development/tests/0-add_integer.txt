@@ -1,0 +1,75 @@
+===============================
+0. Integer addition module
+===============================
+
+Import module:
+==============
+    >>> add_integer = __import__('0-add_integer').add_integer
+
+
+---------- empty Parameters
+===========================
+
+    >>> add_integer()
+    Traceback (most recent call last):
+    TypeError: add_integer() missing 1 required positional argument: 'a'
+
+    >>> add_integer(a, 123)
+    Traceback (most recent call last):
+    NameError: name 'a' is not defined
+
+    >>> add_integer(6)
+    104
+
+    >>> add_integer(2.0, )
+    100
+
+
+---------- Numbers
+==================
+
+    >>> add_integer(1, 2)
+    3
+
+    >>> add_integer(25.0, 15.0)
+    40
+
+    >>> add_integer(5, 20.0)
+    25
+
+    >>> add_integer(10.0, 5)
+    15
+
+    >>> add_integer(-6.5, -5)
+    -11
+
+    >>> add_integer(100.5, -10)
+    90
+
+    >>> add_integer(5, 1e400)
+    Traceback (most recent call last):
+    OverflowError: cannot convert float infinity to integer
+
+    >>> add_integer(999e9999, -1)
+    Traceback (most recent call last):
+    OverflowError: cannot convert float infinity to integer
+
+
+---------- Non-Numbers
+======================
+
+    >>> add_integer(None, 5)
+    Traceback (most recent call last):
+    TypeError: a must be an integer
+
+    >>> add_integer(7, None)
+    Traceback (most recent call last):
+    TypeError: b must be an integer
+
+    >>> add_integer([1, 5], 10)
+    Traceback (most recent call last):
+    TypeError: a must be an integer
+
+    >>> add_integer(1, "Monty Python")
+    Traceback (most recent call last):
+    TypeError: b must be an integer
