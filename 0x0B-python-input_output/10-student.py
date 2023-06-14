@@ -16,12 +16,7 @@ class Student:
             returns a dictionary representation of the instance
             with specified attributes
         """
-        if not attrs:
-            return self.__dict__
-        new_dict = {}
-        for att in attrs:
-            try:
-                new_dict[att] = self.__dict__[att]
-            except KeyError:
-                pass
-        return new_dict
+        if (type(attrs) == list and
+                all(type(ele) == str for ele in attrs)):
+            return {key: getattr(self, key) for key in attrs if hasattr(self, key)}
+        return self.__dict__
