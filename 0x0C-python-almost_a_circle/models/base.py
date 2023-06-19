@@ -6,7 +6,8 @@ import csv
 
 class Base:
     """
-    This is the base class that provides common functionality for the Rectangle and Square classes.
+    This is the base class that provides common functionality for
+    the Rectangle and Square classes.
     """
 
     __nb_objects = 0
@@ -16,7 +17,8 @@ class Base:
         Initializes a new instance of the Base class.
 
         Args:
-            id (int): The ID of the object. If not provided, it is automatically assigned.
+            id (int): The ID of the object. If not provided,
+            it is automatically assigned.
         """
         if id is None:
             Base.__nb_objects += 1
@@ -89,7 +91,8 @@ class Base:
         Creates a new instance of a class based on a dictionary of attributes.
 
         Args:
-            **dictionary: Arbitrary keyword arguments representing the attributes of the object.
+            **dictionary: Arbitrary keyword arguments representing the
+            attributes of the object.
 
         Returns:
             object: A new instance of the class.
