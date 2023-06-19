@@ -1,9 +1,6 @@
 #!/usr/bin/python3
 """Unittest base.
 Test cases for Base class.
-Each test has the number of the task,
-and the number of the test for that task
-(i.e 'test_create_instance' for the first test of task 1)
 """
 
 import unittest
