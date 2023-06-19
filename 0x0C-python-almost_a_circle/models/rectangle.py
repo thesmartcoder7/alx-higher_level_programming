@@ -1,218 +1,242 @@
 #!/usr/bin/python3
-"""
-This module provides the Rectangle class, a subclass of the Base class.
-"""
 
 from models.base import Base
 
 
 class Rectangle(Base):
     """
-    This class represents a rectangle and inherits from the Base class.
+    Rectangle class that inherits from Base.
+    Represents a rectangle shape.
     """
 
     def __init__(self, width, height, x=0, y=0, id=None):
         """
-        Initializes a Rectangle object.
+        Initializes a Rectangle instance.
 
         Args:
-            width (int): The width of the rectangle.
-            height (int): The height of the rectangle.
-            x (int, optional): The x-coordinate of the rectangle's
+            width (int): Width of the rectangle.
+            height (int): Height of the rectangle.
+            x (int, optional): X-coordinate of the rectangle's
             position. Defaults to 0.
-            y (int, optional): The y-coordinate of the rectangle's
+            y (int, optional): Y-coordinate of the rectangle's
             position. Defaults to 0.
-            id (int, optional): The ID of the rectangle. Defaults to None.
+            id (int, optional): Unique ID of the rectangle. Defaults to None.
         """
         super().__init__(id)
+        self.width = width
+        self.height = height
+        self.x = x
+        self.y = y
 
-        self.check_integer_parameter(width, 'width')
-        self.check_integer_parameter(height, 'height')
-        self.check_integer_parameter(x, 'x')
-        self.check_integer_parameter(y, 'y')
+    def validate_integer(self, attr, value):
+        """
+        Validates that the given value is an integer and satisfies
+        specific conditions.
 
-        self.__width = width
-        self.__height = height
-        self.__x = x
-        self.__y = y
+        Args:
+            attr (str): Attribute name being validated.
+            value (int): Value to validate.
+
+        Raises:
+            TypeError: If the value is not an integer.
+            ValueError: If the value does not satisfy the specified conditions.
+        """
+        if not isinstance(value, int):
+            raise TypeError(f"{attr} must be an integer")
+        if attr in ('width', 'height') and value <= 0:
+            raise ValueError(f"{attr} must be > 0")
+        elif attr in ('x', 'y') and value < 0:
+            raise ValueError(f"{attr} must be >= 0")
 
     @property
     def width(self):
         """
-        Gets the width of the rectangle.
-
-        Returns:
-            int: The width of the rectangle.
+        Width property of the rectangle.
         """
         return self.__width
 
     @width.setter
-    def width(self, param):
+    def width(self, value):
         """
-        Sets the width of the rectangle.
+        Setter for the width property of the rectangle.
 
         Args:
-            param (int): The new width of the rectangle.
-        """
-        self.check_integer_parameter(param, 'width')
+            value (int): New value for the width.
 
-        self.__width = param
+        Raises:
+            TypeError: If the value is not an integer.
+            ValueError: If the value is not greater than 0.
+        """
+        self.validate_integer('width', value)
+        self.__width = value
 
     @property
     def height(self):
         """
-        Gets the height of the rectangle.
-
-        Returns:
-            int: The height of the rectangle.
+        Height property of the rectangle.
         """
         return self.__height
 
     @height.setter
-    def height(self, param):
+    def height(self, value):
         """
-        Sets the height of the rectangle.
+        Setter for the height property of the rectangle.
 
         Args:
-            param (int): The new height of the rectangle.
-        """
-        self.check_integer_parameter(param, 'height')
+            value (int): New value for the height.
 
-        self.__height = param
+        Raises:
+            TypeError: If the value is not an integer.
+            ValueError: If the value is not greater than 0.
+        """
+        self.validate_integer('height', value)
+        self.__height = value
 
     @property
     def x(self):
         """
-        Gets the x-coordinate of the rectangle's position.
-
-        Returns:
-            int: The x-coordinate of the rectangle's position.
+        X-coordinate property of the rectangle's position.
         """
         return self.__x
 
     @x.setter
-    def x(self, param):
+    def x(self, value):
         """
-        Sets the x-coordinate of the rectangle's position.
+        Setter for the x-coordinate property of the rectangle's position.
 
         Args:
-            param (int): The new x-coordinate of the rectangle's position.
-        """
-        self.check_integer_parameter(param, 'x')
+            value (int): New value for the x-coordinate.
 
-        self.__x = param
+        Raises:
+            TypeError: If the value is not an integer.
+            ValueError: If the value is not greater than or equal to 0.
+        """
+        self.validate_integer('x', value)
+        self.__x = value
 
     @property
     def y(self):
         """
-        Gets the y-coordinate of the rectangle's position.
-
-        Returns:
-            int: The y-coordinate of the rectangle's position.
+        Y-coordinate property of the rectangle's position.
         """
         return self.__y
 
     @y.setter
-    def y(self, param):
+    def y(self, value):
         """
-        Sets the y-coordinate of the rectangle's position.
+        Setter for the y-coordinate property of the rectangle's position.
 
         Args:
-            param (int): The new y-coordinate of the rectangle's position.
-        """
-        self.check_integer_parameter(param, 'y')
-
-        self.__y = param
-
-    def check_integer_parameter(self, value, param):
-        """
-        Checks if the given value is a valid integer parameter.
-
-        Args:
-            value (any): The value to be checked.
-            param (str): The parameter name.
+            value (int): New value for the y-coordinate.
 
         Raises:
             TypeError: If the value is not an integer.
-            ValueError: If the value is not within the
-            valid range for the parameter.
+            ValueError: If the value is not greater than or equal to 0.
         """
-        if type(value) is not int:
-            raise TypeError(param + ' must be an integer')
-
-        if value <= 0 and param in ('width', 'height'):
-            raise ValueError(param + ' must be > 0')
-
-        if value < 0 and param in ('x', 'y'):
-            raise ValueError(param + ' must be >= 0')
+        self.validate_integer('y', value)
+        self.__y = value
 
     def area(self):
         """
-        Calculates and returns the area of the rectangle.
+        Calculates the area of the rectangle.
 
         Returns:
-            int: The area of the rectangle.
+            int: Area of the rectangle.
         """
-        return self.__width * self.__height
+        return self.width * self.height
 
     def display(self):
         """
-        Displays the rectangle by printing it as a series of '#' characters.
+        Displays the rectangle by printing its representation
+        using '#' characters.
+        The position and dimensions of the rectangle are
+        taken into account.
         """
-        if self.__y > 0:
-            print('\n' * self.__y, end='')
-
-        for i in range(self.height):
-            if self.__x > 0:
-                print(' ' * self.__x, end='')
-
-            print('#' * self.__width)
+        display = '\n' * self.y + \
+            '\n'.join([' ' * self.x + '#' * self.width] * self.height)
+        print(display)
 
     def __str__(self):
         """
         Returns a string representation of the rectangle.
 
         Returns:
-            str: The string representation of the rectangle.
+            str: String representation of the rectangle.
         """
-        return '[Rectangle] ({:d}) {:d}/{:d} - {:d}/{:d}'.format(
-            self.id, self.x, self.y, self.width, self.height
-        )
+        x, y = self.x, self.y
+        w, h = self.width, self.height
+
+        return f"[Rectangle] ({self.id}) {x}/{y} - {w}/{h}"
 
     def update(self, *args, **kwargs):
         """
         Updates the attributes of the rectangle.
 
         Args:
-            *args (any): Variable length argument list.
-            **kwargs (any): Arbitrary keyword arguments.
+            *args: Non-keyword arguments representing the attributes
+            in the following order:
+                - ID
+                - Width
+                - Height
+                - X-coordinate
+                - Y-coordinate
+            **kwargs: Keyword arguments representing the attributes with
+            their corresponding values.
+
+        Raises:
+            TypeError: If the number of arguments is greater than 5 or no
+            valid arguments are provided.
+            KeyError: If an invalid attribute name is specified.
         """
-        argc = len(args)
-        kwargc = len(kwargs)
-        modif_attrs = ['id', 'width', 'height', 'x', 'y']
-
-        if argc > 5:
-            argc = 5
-
-        if argc > 0:
-            for i in range(argc):
-                setattr(self, modif_attrs[i], args[i])
-        elif kwargc > 0:
-            for k, v in kwargs.items():
-                if k in modif_attrs:
-                    setattr(self, k, v)
+        if len(args) > 5:
+            error = """Rectangle.update() takes 1 to 5 keyword,
+             or 1 to 5 non-keyword arguments"""
+            raise TypeError(error)
+        for i, arg in enumerate(args):
+            if i == 0:
+                if self.id != arg:
+                    self.id = arg
+                    Base._Base__assigned_ids.add(arg)
+            elif i == 1:
+                self.width = arg
+            elif i == 2:
+                self.height = arg
+            elif i == 3:
+                self.x = arg
+            elif i == 4:
+                self.y = arg
+        if args and len(args) <= 5:
+            return
+        if not args and not kwargs:
+            error = """Rectangle.update() takes 1 to 5 keyword,
+             or 1 to 5 non-keyword arguments"""
+            raise TypeError(error)
+        for key, value in kwargs.items():
+            if key == 'id':
+                self.id = value
+                Base._Base__assigned_ids.add(value)
+            elif key == 'width':
+                self.width = value
+            elif key == 'height':
+                self.height = value
+            elif key == 'x':
+                self.x = value
+            elif key == 'y':
+                self.y = value
+            else:
+                raise KeyError(f"Invalid attribute name: {key}")
 
     def to_dictionary(self):
         """
-        Returns a dictionary representation of the rectangle.
+        Converts the rectangle object into a dictionary representation.
 
         Returns:
-            dict: The dictionary representation of the rectangle.
+            dict: Dictionary representation of the rectangle.
         """
         return {
             'id': self.id,
             'width': self.width,
             'height': self.height,
             'x': self.x,
-            'y': self.y
+            'y': self.y,
         }

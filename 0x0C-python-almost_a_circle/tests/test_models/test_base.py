@@ -1,107 +1,190 @@
+#!/usr/bin/python3
+"""Unittest base.
+Test cases for Base class.
+Each test has the number of the task,
+and the number of the test for that task
+(i.e 'test_create_instance' for the first test of task 1)
+"""
+
 import unittest
-import os, pycodestyle
+import os
 from models.base import Base
 from models.rectangle import Rectangle
 from models.square import Square
 
+
 class TestBase(unittest.TestCase):
-    """
-    Test class for Base class.
-    """
+    """Test class for Base class."""
 
     def setUp(self):
-        """
-        Set up method to reset the counter before each test.
-        """
         Base._Base__nb_objects = 0
 
-    def test_base_id_increment(self):
-        """
-        Test case to create new instances and check for id incrementation.
-        """
-        b0 = Base()
-        self.assertEqual(b0.id, 1)
+    def test_create_instance(self):
+        """Create new instances: check for id."""
+        b = Base()
+        self.assertEqual(b.id, 1)
 
-    def test_base_type_instance(self):
-        """
-        Test case to check the type and instance of Base object.
-        """
-        b0 = Base()
-        self.assertEqual(type(b0), Base)
-        self.assertTrue(isinstance(b0, Base))
+    def test_instance_type(self):
+        """Test for type and instance."""
+        b = Base()
+        self.assertEqual(type(b), Base)
+        self.assertTrue(isinstance(b, Base))
 
-    def test_to_json_string(self):
-        """
-        Test case for static method to_json_string.
-        """
+    def test_to_json_string_regular_dict(self):
+        """Test static method to_json_string with regular dict."""
         d = {'x': 2, 'width': 10, 'id': 1, 'height': 7, 'y': 8}
         json_d = Base.to_json_string([d])
         self.assertTrue(isinstance(d, dict))
         self.assertTrue(isinstance(json_d, str))
-        self.assertCountEqual(json_d, '[{"x": 2, "width": 10, "id": 1, "height": 7, "y": 8}]')
+        self.assertCountEqual(
+            json_d, '[{"x": 2, "width": 10, "id": 1, "height": 7, "y": 8}]')
         json_d_1 = Base.to_json_string([])
         self.assertEqual(json_d_1, "[]")
         json_d_2 = Base.to_json_string(None)
         self.assertEqual(json_d_1, "[]")
 
-    def test_to_json_string_wrong_types(self):
-        """
-        Test case for static method to_json_string with wrong types.
-        """
-        with self.assertRaises(TypeError) as x:
-            Base.to_json_string(9)
-        self.assertEqual("list_dictionaries must be a list of dictionaries", str(x.exception))
-        # Add more tests for other types
-
     def test_to_json_string_wrong_args(self):
-        """
-        Test case for static method to_json_string with wrong number of arguments.
-        """
-        s1 = "to_json_string() missing 1 required positional argument: 'list_dictionaries'"
+        """Test static method to_json_string with wrong number of args."""
+        s1 = ("to_json_string() missing 1 required positional argument: "
+              "'list_dictionaries'")
         with self.assertRaises(TypeError) as x:
             Base.to_json_string()
         self.assertEqual(s1, str(x.exception))
-        # Add more tests for wrong number of arguments
+        s2 = "to_json_string() takes 1 positional argument but 2 were given"
+        with self.assertRaises(TypeError) as x:
+            Base.to_json_string([{1, 2}], [{3, 4}])
+        self.assertEqual(s2, str(x.exception))
 
-    def test_save_to_file(self):
-        """
-        Test case for class method save_to_file with normal types.
-        """
+    def test_save_to_file_normal_types(self):
+        """Test class method save_to_file with normal types."""
         r0 = Rectangle(10, 7, 2, 8)
         r1 = Rectangle(2, 4)
         Rectangle.save_to_file([r0, r1])
-        # Add assertions for file existence and contents
-
-
-    def test_save_to_file_empty(self):
-        """
-        Test case for class method save_to_file with empty list.
-        """
+        res = ('[{"y": 8, "x": 2, "id": 1, "width": 10, "height": 7},' +
+               ' {"y": 0, "x": 0, "id": 2, "width": 2, "height": 4}]')
+        with open("Rectangle.json", "r") as f:
+            self.assertEqual(len(f.read()), len(res))
+        Rectangle.save_to_file(None)
+        res = "[]"
+        with open("Rectangle.json", "r") as f:
+            self.assertEqual(f.read(), res)
+        os.remove("Rectangle.json")
         Rectangle.save_to_file([])
-        # Add assertions for file existence and contents
+        with open("Rectangle.json", "r") as f:
+            self.assertEqual(f.read(), res)
+        s0 = Square(9, 3, 1, 12)
+        s1 = Square(6, 7)
+        Square.save_to_file([s0, s1])
+        res = ('[{"id": 12, "size": 9, "y": 1, "x": 3},' +
+               ' {"id": 1, "size": 6, "y": 0, "x": 7}]')
+        with open("Square.json", "r") as f:
+            self.assertEqual(len(f.read()), len(res))
+        Square.save_to_file(None)
+        res = "[]"
+        with open("Square.json", "r") as f:
+            self.assertEqual(f.read(), res)
+        os.remove("Square.json")
+        Square.save_to_file([])
+        with open("Square.json", "r") as f:
+            self.assertEqual(f.read(), res)
 
-    def test_create_rectangle(self):
-        """
-        Test case for class method create with Rectangle.
-        """
-        r_dict = {'id': 1, 'width': 10, 'height': 7, 'x': 2, 'y': 8}
-        r = Rectangle.create(**r_dict)
-        self.assertEqual(r.id, 1)
-        self.assertEqual(r.width, 10)
-        self.assertEqual(r.height, 7)
-        self.assertEqual(r.x, 2)
-        self.assertEqual(r.y, 8)
+    def test_save_to_file_wrong_args(self):
+        """Test class method save_to_file with wrong types of arguments."""
+        s1 = ("save_to_file() missing 1 required positional argument: "
+              "'list_objs'")
+        with self.assertRaises(TypeError) as x:
+            Rectangle.save_to_file()
+        self.assertEqual(s1, str(x.exception))
+        s2 = "save_to_file() takes 2 positional arguments but 3 were given"
+        with self.assertRaises(TypeError) as x:
+            Rectangle.save_to_file([1, 2], [3, 4])
+        self.assertEqual(s2, str(x.exception))
 
-    class TestPEP8(unittest.TestCase):
-        """Test class to check PEP8 validity of the code."""
+    def test_load_from_file(self):
+        """Test class method load_from_file."""
+        Rectangle.save_to_file([])
+        list_objs_r = Rectangle.load_from_file()
+        self.assertEqual(list_objs_r, [])
+        Rectangle.save_to_file(None)
+        list_objs_r = Rectangle.load_from_file()
+        self.assertEqual(list_objs_r, [])
+        r = Rectangle(3, 4)
+        r.save_to_file([r])
+        list_objs_r = Rectangle.load_from_file()
+        self.assertEqual(len(list_objs_r), 1)
+        self.assertIsInstance(list_objs_r[0], Rectangle)
+        self.assertEqual(list_objs_r[0].width, 3)
+        self.assertEqual(list_objs_r[0].height, 4)
+        self.assertEqual(list_objs_r[0].x, 0)
+        self.assertEqual(list_objs_r[0].y, 0)
+        r = Rectangle(3, 4)
+        r.save_to_file(None)
+        list_objs_r = Rectangle.load_from_file()
+        self.assertEqual(len(list_objs_r), 0)
+        os.remove("Rectangle.json")
+        Square.save_to_file([])
+        list_objs_s = Square.load_from_file()
+        self.assertEqual(list_objs_s, [])
+        Square.save_to_file(None)
+        list_objs_s = Square.load_from_file()
+        self.assertEqual(list_objs_s, [])
+        s = Square(3)
+        s.save_to_file([s])
+        list_objs_s = Square.load_from_file()
+        self.assertEqual(len(list_objs_s), 1)
+        self.assertIsInstance(list_objs_s[0], Square)
+        self.assertEqual(list_objs_s[0].size, 3)
+        self.assertEqual(list_objs_s[0].x, 0)
+        self.assertEqual(list_objs_s[0].y, 0)
+        s = Square(3)
+        s.save_to_file(None)
+        list_objs_s = Square.load_from_file()
+        self.assertEqual(len(list_objs_s), 0)
+        os.remove("Square.json")
 
-    def test_pep8_conformance(self):
-        """
-        Test case to check if the code conforms to PEP8 style guidelines.
-        """
-        style = pycodestyle.StyleGuide(quiet=True)
-        result = style.check_files(['models/base.py', 'models/rectangle.py', 'models/square.py'])
-        self.assertEqual(result.total_errors, 0, "PEP8 style violations found")
+    def test_load_from_file_csv(self):
+        """Test class method load_from_file_csv."""
+        Rectangle.save_to_file_csv([])
+        list_objs_r = Rectangle.load_from_file_csv()
+        self.assertEqual(list_objs_r, [])
+        Rectangle.save_to_file_csv(None)
+        list_objs_r = Rectangle.load_from_file_csv()
+        self.assertEqual(list_objs_r, [])
+        r = Rectangle(3, 4, 0, 0, 12)
+        r.save_to_file_csv([r])
+        list_objs_r = Rectangle.load_from_file_csv()
+        self.assertEqual(len(list_objs_r), 1)
+        self.assertIsInstance(list_objs_r[0], Rectangle)
+        self.assertEqual(list_objs_r[0].width, 3)
+        self.assertEqual(list_objs_r[0].height, 4)
+        self.assertEqual(list_objs_r[0].x, 0)
+        self.assertEqual(list_objs_r[0].y, 0)
+        self.assertEqual(list_objs_r[0].id, 12)
+        r = Rectangle(3, 4, 0, 0, 12)
+        r.save_to_file_csv(None)
+        list_objs_r = Rectangle.load_from_file_csv()
+        self.assertEqual(len(list_objs_r), 0)
+        os.remove("Rectangle.csv")
+        Square.save_to_file_csv([])
+        list_objs_s = Square.load_from_file_csv()
+        self.assertEqual(list_objs_s, [])
+        Square.save_to_file_csv(None)
+        list_objs_s = Square.load_from_file_csv()
+        self.assertEqual(list_objs_s, [])
+        s = Square(3, 0, 0, 12)
+        s.save_to_file_csv([s])
+        list_objs_s = Square.load_from_file_csv()
+        self.assertEqual(len(list_objs_s), 1)
+        self.assertIsInstance(list_objs_s[0], Square)
+        self.assertEqual(list_objs_s[0].size, 3)
+        self.assertEqual(list_objs_s[0].x, 0)
+        self.assertEqual(list_objs_s[0].y, 0)
+        self.assertEqual(list_objs_s[0].id, 12)
+        s = Square(3, 0, 0, 12)
+        s.save_to_file_csv(None)
+        list_objs_s = Square.load_from_file_csv()
+        self.assertEqual(len(list_objs_s), 0)
+        os.remove("Square.csv")
 
 
 if __name__ == '__main__':
