@@ -6,6 +6,7 @@ import json
 This is for the drawing of whatever needs to be drawn
 """
 
+
 class Base:
     """
     The Base class represents the base object with common functionalities.
@@ -89,7 +90,8 @@ class Base:
     @classmethod
     def create(cls, **dictionary):
         """
-        Creates a new instance of the class based on a dictionary of attributes.
+        Creates a new instance of the class based on a
+        dictionary of attributes.
 
         Args:
             dictionary (dict): The dictionary of attributes.

@@ -18,8 +18,10 @@ class Rectangle(Base):
         Args:
             width (int): The width of the rectangle.
             height (int): The height of the rectangle.
-            x (int, optional): The x-coordinate of the rectangle's position. Defaults to 0.
-            y (int, optional): The y-coordinate of the rectangle's position. Defaults to 0.
+            x (int, optional): The x-coordinate of the rectangle's
+            position. Defaults to 0.
+            y (int, optional): The y-coordinate of the rectangle's
+            position. Defaults to 0.
             id (int, optional): The ID of the rectangle. Defaults to None.
         """
         super().__init__(id)
@@ -132,7 +134,8 @@ class Rectangle(Base):
 
         Raises:
             TypeError: If the value is not an integer.
-            ValueError: If the value is not within the valid range for the parameter.
+            ValueError: If the value is not within the
+            valid range for the parameter.
         """
         if type(value) is not int:
             raise TypeError(param + ' must be an integer')
