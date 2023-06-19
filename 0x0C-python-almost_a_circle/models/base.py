@@ -47,30 +47,6 @@ class Base:
 
         return json.dumps(list_dictionaries)
 
-    @classmethod
-    def save_to_file(cls, list_objs):
-        """
-        Saves a list of objects to a JSON file.
-
-        Args:
-            list_objs (list): A list of objects to be saved.
-
-        Returns:
-            int: The number of characters written to the file.
-        """
-        filename = cls.__name__ + '.json'
-
-        with open(filename, mode='w', encoding='utf-8') as f:
-            if list_objs is None:
-                return f.write(cls.to_json_string(None))
-
-            json_attrs = []
-
-            for elem in list_objs:
-                json_attrs.append(elem.to_dictionary())
-
-            return f.write(cls.to_json_string(json_attrs))
-
     @staticmethod
     def from_json_string(json_string):
         """
@@ -107,6 +83,22 @@ class Base:
 
         dummy.update(**dictionary)
         return dummy
+
+    @classmethod
+    def save_to_file(cls, list_objs):
+        """Writes the JSON string representation of
+        list_objs to a file.
+
+        Args:
+            - list_objs: list of instances who inherits of Base
+        """
+        if list_objs is None or list_objs == []:
+            jstr = "[]"
+        else:
+            jstr = cls.to_json_string([o.to_dictionary() for o in list_objs])
+        filename = cls.__name__ + ".json"
+        with open(filename, 'w') as f:
+            f.write(jstr)
 
     @classmethod
     def load_from_file(cls):
