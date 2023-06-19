@@ -68,8 +68,8 @@ class Base:
 
             json_attrs = []
 
-            for elem in list_objs:
-                json_attrs.append(elem.to_dictionary())
+            for obj in list_objs:
+                json_attrs.append(obj.to_dictionary())
 
             return f.write(cls.to_json_string(json_attrs))
 
@@ -145,13 +145,13 @@ class Base:
         """
         if (type(list_objs) != list and
                 list_objs is not None or
-                not all(isinstance(x, cls) for x in list_objs)):
+                not all(isinstance(obj, cls) for obj in list_objs)):
             raise TypeError("list_objs must be a list of instances")
 
         filename = cls.__name__ + ".csv"
         with open(filename, 'w') as f:
             if list_objs is not None:
-                list_objs = [x.to_dictionary() for x in list_objs]
+                list_objs = [obj.to_dictionary() for obj in list_objs]
                 if cls.__name__ == 'Rectangle':
                     fields = ['id', 'width', 'height', 'x', 'y']
                 elif cls.__name__ == 'Square':
@@ -169,7 +169,7 @@ class Base:
             list: A list of instances.
         """
         filename = cls.__name__ + ".csv"
-        l = []
+        instances = []
         if path.exists(filename):
             with open(filename, 'r') as f:
                 reader = csv.reader(f, delimiter=',')
@@ -177,14 +177,15 @@ class Base:
                     fields = ['id', 'width', 'height', 'x', 'y']
                 elif cls.__name__ == 'Square':
                     fields = ['id', 'size', 'x', 'y']
-                for x, row in enumerate(reader):
-                    if x > 0:
-                        i = cls(1, 1)
-                        for j, e in enumerate(row):
-                            if e:
-                                setattr(i, fields[j], int(e))
-                        l.append(i)
-        return l
+                for index, row in enumerate(reader):
+                    if index > 0:
+                        instance = cls(1, 1)
+                        for field_index, elem in enumerate(row):
+                            if elem:
+                                setattr(
+                                    instance, fields[field_index], int(elem))
+                        instances.append(instance)
+        return instances
 
     @staticmethod
     def draw(list_rectangles, list_squares):
@@ -205,12 +206,12 @@ class Base:
         t.shape("square")
         t.pensize(8)
 
-        for i in (list_rectangles + list_squares):
+        for obj in (list_rectangles + list_squares):
             t.penup()
             t.setpos(0, 0)
             turtle.Screen().colormode(255)
             t.pencolor((randrange(255), randrange(255), randrange(255)))
-            Base.draw_rect(t, i)
+            Base.draw_rect(t, obj)
             time.sleep(1)
         time.sleep(5)
 
