@@ -15,6 +15,7 @@ class TestBase(unittest.TestCase):
     """
     A class to test the Base Class
     """
+
     def test_pep8_base(self):
         """
         Test that checks PEP8
@@ -133,8 +134,8 @@ class TestBase(unittest.TestCase):
             Base.save_to_file([Base(1), Base(2)])
 
         self.assertEqual(
-             "'Base' object has no attribute 'to_dictionary'",
-             str(msg.exception)
+            "'Base' object has no attribute 'to_dictionary'",
+            str(msg.exception)
         )
 
     def test_load_from_file(self):

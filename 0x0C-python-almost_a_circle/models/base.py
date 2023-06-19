@@ -20,11 +20,13 @@ class Base:
             id (int): The ID of the object. If not provided,
             it is automatically assigned.
         """
-        if id is None:
+        if type(id) != int and id is not None:
+            raise TypeError("id must be an integer")
+        if id is not None:
+            self.id = id
+        else:
             Base.__nb_objects += 1
             self.id = Base.__nb_objects
-        else:
-            self.id = id
 
     @staticmethod
     def to_json_string(list_dictionaries):
