@@ -1,10 +1,9 @@
 #!/usr/bin/python3
 """
-Changes the name of the State object with id=2 to 'New Mexico'
-in the database.
+This script changes the name of the State object with id=2 to "New Mexico" in a database.
 """
 
-# Import the necessary modules from the SQLAlchemy library
+# Import necessary modules
 import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -13,29 +12,29 @@ from model_state import Base, State
 
 if __name__ == "__main__":
     """
-    Change the name of the State object with id=2 to 'New Mexico'
-    in the database.
+    Main script to change the name of a State object in the database.
     """
-    # Create a database connection using SQLAlchemy's create_engine function
+    # Create a database engine using SQLAlchemy
     eng = create_engine(
         "mysql+mysqldb://{}:{}@localhost/{}".format(argv[1], argv[2], argv[3])
     )
 
-    # Create the tables in the database based on the defined models
+    # Create the database tables if they don't exist
     Base.metadata.create_all(eng)
 
     # Create a session to interact with the database
     Session = sessionmaker(bind=eng)
     session = Session()
 
-    # Query and update the State object with id=2
-    state_to_update = session.query(State).filter_by(id=2).first()
-    if state_to_update:
-        state_to_update.name = 'New Mexico'
-        session.commit()
-        print("State with id=2 has been updated to 'New Mexico'.")
-    else:
-        print("State with id=2 not found.")
+    # Query for State objects with names containing "a"
+    states = session.query(State).filter(State.name.like("%a%"))
 
-    # Close the session when done
+    # Iterate through the queried states and delete them
+    for state in states:
+        session.delete(state)
+
+    # Commit the changes to the database
+    session.commit()
+
+    # Close the session
     session.close()
