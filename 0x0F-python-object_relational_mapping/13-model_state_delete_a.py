@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-This script changes the name of the State object with id=2 to "New Mexico" in a database.
+This script changes the name of the State object with id=2 to
+"New Mexico" in a database.
 """
 
 # Import necessary modules
