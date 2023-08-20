@@ -30,7 +30,7 @@ if __name__ == "__main__":
     new_state = State(name="Louisiana")
     session.add(new_state)
 
-    # Query the State object with the name 'Louisiana' to retrieve its assigned ID
+    # Query the State object with the name 'Louisiana' to retrieve its ID
     state = session.query(State).filter_by(name="Louisiana").first()
 
     # Print the assigned ID of the 'Louisiana' State object

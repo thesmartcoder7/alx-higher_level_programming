@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-A script that selects states with names starting with "N" from the database hbtn_0e_0_usa.
+A script that selects states with names starting with "N"
+from the database hbtn_0e_0_usa.
 """
 
 # Import necessary modules
@@ -9,7 +10,8 @@ import MySQLdb
 
 if __name__ == "__main__":
     """
-    Main script to retrieve and display states with names starting with "N" from the database.
+    Main script to retrieve and display states with names starting
+    with "N" from the database.
     """
     # Create a database connection using MySQLdb
     db = MySQLdb.connect(

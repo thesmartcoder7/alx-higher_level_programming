@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-A Python script that lists all states from the database hbtn_0e_0_usa with a given name.
+A Python script that lists all states from the database
+hbtn_0e_0_usa with a given name.
 """
 
 # Import necessary modules
@@ -9,7 +10,8 @@ from sys import argv
 
 if __name__ == "__main__":
     """
-    Main script to retrieve and list states with a given name from the database.
+    Main script to retrieve and list states with a given
+    name from the database.
     """
     # Create a database connection using MySQLdb
     db = MySQLdb.connect(

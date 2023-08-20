@@ -13,7 +13,8 @@ from sys import argv
 
 if __name__ == "__main__":
     """
-    Create the State 'California' with the City 'San Francisco' in the database.
+    Create the State 'California' with the City
+    'San Francisco' in the database.
     """
     # Create a database connection using SQLAlchemy's create_engine function
     eng = create_engine(
@@ -30,11 +31,11 @@ if __name__ == "__main__":
     # Create a new State object named 'California' and add it to the session
     cali = State(name="California")
 
-    # Create a new City object named 'San Francisco' and associate it with 'California'
+    # Create an object named 'San Francisco' and associate it with 'California'
     san_francisco = City(name="San Francisco")
     cali.cities = [san_francisco]
 
-    # Add the State and City objects to the session and commit changes to the database
+    # Add the State and City objects to the session and commit changes to db
     session.add(cali)
     session.commit()
 

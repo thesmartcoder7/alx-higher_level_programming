@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-Changes the name of the State object with id=2 to 'New Mexico' in the database.
+Changes the name of the State object with id=2 to 'New Mexico'
+in the database.
 """
 
 # Import the necessary modules from the SQLAlchemy library
@@ -12,7 +13,8 @@ from model_state import Base, State
 
 if __name__ == "__main__":
     """
-    Change the name of the State object with id=2 to 'New Mexico' in the database.
+    Change the name of the State object with id=2 to 'New Mexico'
+    in the database.
     """
     # Create a database connection using SQLAlchemy's create_engine function
     eng = create_engine(

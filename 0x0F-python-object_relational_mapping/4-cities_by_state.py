@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-This script is used to select cities by states from the database hbtn_0e_4_usa.
+This script is used to select cities by states from the
+database hbtn_0e_4_usa.
 """
 
 # Import necessary modules
@@ -9,7 +10,8 @@ import MySQLdb
 
 if __name__ == "__main__":
     """
-    Select and print cities along with their corresponding states from the database.
+    Select and print cities along with their corresponding
+    states from the database.
     """
     # Create a database connection using MySQLdb
     db = MySQLdb.connect(
@@ -26,7 +28,8 @@ if __name__ == "__main__":
     # Execute SQL query to select cities along with their corresponding states
     cur.execute(
         "SELECT cities.id, cities.name, states.name FROM cities \
-        INNER JOIN states ON cities.state_id = states.id ORDER BY cities.id ASC"
+        INNER JOIN states ON cities.state_id = states.id ORDER \
+        BY cities.id ASC"
     )
 
     # Fetch all rows of the query result

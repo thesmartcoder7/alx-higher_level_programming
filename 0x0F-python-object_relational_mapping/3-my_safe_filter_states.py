@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 """
-This script retrieves and displays rows from the 'states' table of the 'hbtn_0e_0_usa'
-database where the 'name' column matches the provided argument.
+This script retrieves and displays rows from the 'states'
+table of the 'hbtn_0e_0_usa' database where the 'name'
+column matches the provided argument.
 """
 
 # Import necessary modules
@@ -24,7 +25,7 @@ if __name__ == "__main__":
     # Create a cursor to execute SQL queries
     cur = db.cursor()
 
-    # Execute SQL query to select rows from 'states' table based on the provided argument
+    # Execute SQL query to select rows from 'states' table based on argument
     cur.execute(
         "SELECT * FROM states WHERE name = %s ORDER BY id ASC", (sys.argv[4],)
     )

@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-Retrieves and displays all State and corresponding City objects from a database.
+Retrieves and displays all State and corresponding City objects
+from a database.
 """
 
 # Import the necessary modules from the SQLAlchemy library
@@ -13,7 +14,8 @@ from sys import argv
 
 if __name__ == "__main__":
     """
-    Retrieve and display all State and corresponding City objects from a database.
+    Retrieve and display all State and corresponding City objects
+    from a database.
     """
     # Create a database connection using SQLAlchemy's create_engine function
     eng = create_engine(
@@ -30,7 +32,7 @@ if __name__ == "__main__":
     # Retrieve all State objects from the database
     states = session.query(State).all()
 
-    # Display information about each State object and its corresponding City objects
+    # Display information about each State object and its corresponding objects
     for state in states:
         print("{}: {}".format(state.id, state.name))
         for city in state.cities:

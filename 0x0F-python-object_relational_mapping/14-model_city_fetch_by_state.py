@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-Prints all City objects from a database along with their associated State names.
+Prints all City objects from a database along with their
+associated State names.
 """
 
 # Import the necessary modules from the SQLAlchemy library
@@ -13,7 +14,8 @@ from model_city import City
 
 if __name__ == "__main__":
     """
-    Print all City objects from a database along with their associated State names.
+    Print all City objects from a database along with their
+    associated State names.
     """
     # Create a database connection using SQLAlchemy's create_engine function
     eng = create_engine(
