@@ -6,23 +6,27 @@ A function that finds a peak in a list of unsorted integers.
 
 def find_peak(list_of_integers):
     """
-    Find the highest point within an array of integers that are not sorted.
+    function that finds a peak in a list of unsorted integers.
+
+    Args:
+        list_of_integers (list): a list of integers
+
+    Returns:
+        int: peak(s)
     """
-    size = len(list_of_integers)
+    list_ = list_of_integers
 
-    if size == 0:
+    if list_ == []:
         return None
-    elif size == 1:
-        return list_of_integers[0]
-    elif size == 2:
-        return max(list_of_integers)
+    length = len(list_)
 
-    middle = size // 2
-    peak = list_of_integers[middle]
-
-    if peak > list_of_integers[middle - 1] and peak > list_of_integers[middle + 1]:
-        return peak
-    elif peak < list_of_integers[middle - 1]:
-        return find_peak(list_of_integers[:middle])
-    else:
-        return find_peak(list_of_integers[middle + 1:])
+    start, end = 0, length - 1
+    while start < end:
+        mid = start + (end - start) // 2
+        if list_[mid] > list_[mid - 1] and list_[mid] > list_[mid + 1]:
+            return list_[mid]
+        if list_[mid - 1] > list_[mid + 1]:
+            end = mid
+        else:
+            start = mid + 1
+    return list_[start]
