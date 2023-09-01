@@ -3,8 +3,7 @@
 A script that fetches https://intranet.hbtn.io/status.
 using urlib package
 """
-import urllib
-
+import urllib.request
 
 if __name__ == '__main__':
     with urllib.request.urlopen(
